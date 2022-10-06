@@ -7,7 +7,7 @@ const Home = ({ products, bannerData, categories }) => (
   <div className='container'>
     <div className='main-view'>
     <CategoriesAside categories={categories}/>
-    <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
+    <HeroBanner heroBanner={bannerData.length && bannerData}  />
     </div>
     <CategoriesNav categories={categories}/>
     <div className="products-heading">
