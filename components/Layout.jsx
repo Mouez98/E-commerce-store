@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       <Head>
         <title>JS Mastery Store</title>
       </Head>
-      <ComingSoonBar />
+      {/* <ComingSoonBar /> */}
       <header>
         <Navbar />
       </header>

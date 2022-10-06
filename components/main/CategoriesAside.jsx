@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
+import useWindowSize from '../../hooks/useWindowSize';
 
 
 const CategoriesAside = ({categories}) => {
+  const size = useWindowSize()
+  if (size.width < 700) return <></>
   return (
     <aside className="categories">
       <ul>
