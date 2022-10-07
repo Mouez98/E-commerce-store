@@ -6,9 +6,10 @@ import useWindowSize from '../../hooks/useWindowSize';
 
 const CategoriesAside = ({categories}) => {
   const size = useWindowSize()
-  if (size.width < 700) return <></>
+  // if (size.width < 700) return <></>
   return (
     <aside className="categories">
+      <h5>Our Categories </h5>
       <ul>
         {categories?.map((category) => (
           <li key={category._id}>

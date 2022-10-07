@@ -54,7 +54,7 @@ useEffect(()=>{
             <span
               key={banner._id}
               onClick={() => setIndex(i)}
-              className={index === i && 'active'}
+              className={index === i ? 'active' : ''}
             ></span>
           ))}
       </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import useWindowSize from '../../hooks/useWindowSize';
 
 import { AiOutlineShopping } from 'react-icons/ai';
 import { BiMenu } from 'react-icons/bi';
@@ -11,31 +10,27 @@ import SearchBox from './SearchBox';
 import logo from '../../assets/IMG_20221006_144938_405-removebg-preview (1).png';
 
 const Navbar = () => {
-  const [showAside, setShowAside] = useState(false)
-  const size = useWindowSize();
+  const [showAside, setShowAside] = useState(false);
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
-
-  const showAsideHandler = () => setShowAside(show => !show)
+  const showAsideHandler = () => setShowAside((show) => !show);
 
   return (
     <div className="navbar-container ">
+      <AsideNav closeSideBar={showAsideHandler} showAside={showAside} />
       <div className="container">
-        {showAside && <AsideNav />}
-        {size.width < 700 && (
-          <div className="menu-btn" onClick={showAsideHandler}>
+        <div className="logo nav-item">
+          <button className="menu-btn" onClick={showAsideHandler}>
             <BiMenu width={100} height={100} />
-          </div>
-        )}
-        <div className="logo">
+          </button>
           <Link href="/">
-            <img src={logo.src} alt="logo Name" cl />
+            <img src={logo.src} alt="logo Name" />
           </Link>
         </div>
         <SearchBox />
         <button
           type="button"
-          className="cart-icon"
+          className="cart-icon nav-item"
           onClick={() => setShowCart(true)}
         >
           <AiOutlineShopping />
