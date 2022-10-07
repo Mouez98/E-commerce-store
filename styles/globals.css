@@ -1,5 +1,5 @@
 :root {
-  --cards-box-shadow: 0 0 5px 1px #e0e0e0;;
+  --cards-box-shadow: 0 0 5px 1px #e0e0e0;
   --nav-box-shadow: 0px 1px 8px -3px #757575;
   --cards-hover-box-shadow: 0px 0px 9px -5px #0000006e;
   --box-shadow: 0px 1px 4px 0px #ebebeb;
@@ -60,6 +60,7 @@ ul {
 .layout {
   background-color: var(--white-color);
   min-height: 100vh;
+  overflow-x: hidden;
   /* padding: 0 10px; */
 }
 
@@ -90,10 +91,15 @@ ul {
   box-shadow: var(--nav-box-shadow);
 }
 
-.navbar-container .menu-btn {
+
+
+.logo .menu-btn {
+  display: none;
   font-size: 29px;
   margin-right: 10px;
   cursor: pointer;
+  border: 1px solid transparent;
+  background-color: transparent;
 }
 
 .sticky {
@@ -116,16 +122,6 @@ ul {
   position: relative;
 }
 
-.select-category {
-  border: 1px solid #eee;
-  border-right-color: transparent;
-  border-radius: 3px 0 0 3px;
-}
-
-.select-category:focus {
-  outline: none;
-}
-
 .search-form button {
   width: 45px;
   border: 1px solid transparent;
@@ -138,23 +134,21 @@ ul {
 
 .search-form button:hover {
   background-color: #c52127;
- 
 }
 
-.search-input {
-  position: relative;
-}
-
-.search-input input {
+ .search-form input {
   padding: 7px 10px;
   height: 100%;
-  min-width: 400px;
+  width: 400px;
   border: 1px solid #eee;
 }
 
-.search-input input:focus {
+.search-form label {
+  display: none;
+}
+
+.search-form input:focus {
   outline: none;
-  
 }
 
 .search-form .results {
@@ -169,7 +163,7 @@ ul {
   z-index: 9999;
 }
 
-.search-form .results ul li{
+.search-form .results ul li {
   cursor: pointer;
   padding: 5px;
 }
@@ -250,11 +244,11 @@ span.text-red {
   margin-left: 6px;
 }
 .logo {
-  color: gray;
-  cursor: pointer;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
 }
 .logo img {
+  cursor: pointer;
   height: 75px;
   filter: drop-shadow(3px 5px 3px #324d67);
 }
@@ -337,16 +331,20 @@ span.text-red {
 
 .categories {
   border-right: 1px solid var(--secondary-grey);
-    /* background-color: var(--bg-color); */
-    /* box-shadow: var(--cards-box-shadow); */
-    width: 300px;
-    /* border-radius: var(--border-radius); */
-    font-family: 'Josefin Sans', sans-serif;
-    /* height: fit-content;
-  /* height: fit-content; */
+  width: 300px;
+  font-family: 'Josefin Sans', sans-serif;
 }
+
+.categories h5 {
+  font-weight: 500;
+  font-size: 18px;
+  margin-left: 5px;
+  padding: 5px;
+  color: var(--primary-red);
+}
+
 .categories li {
-  padding: 5px 10px ;
+  padding: 5px 10px;
   color: var(--dark-blue);
   font-size: 15px;
   font-family: 'Montserrat';
@@ -410,7 +408,7 @@ span.text-red {
   height: 300px;
 }
 
-.hero-banner-container .btns-slides{
+.hero-banner-container .btns-slides {
   display: flex;
   justify-content: center;
   gap: 7px;
@@ -426,8 +424,7 @@ span.text-red {
   border-radius: 50%;
   background-color: var(--secondary-grey);
   cursor: pointer;
-  transition: transform .5s ease ;
-
+  transition: transform 0.5s ease;
 }
 
 .hero-banner-container .btns-slides span.active {
@@ -469,7 +466,6 @@ span.text-red {
   border-radius: 34px;
   background-color: var(--blue-greyish);
   padding: 10px;
-  
 }
 
 .categories-nav img {
@@ -915,6 +911,63 @@ span.text-red {
 }
 
 @media screen and (max-width: 800px) {
+
+  .container {
+    margin: 0 auto;
+    width: 95%;
+  }
+  .navbar-container .container {
+    flex-wrap: wrap;
+  }
+  .navbar-container .container .nav-item {
+     /* flex: 1 0 45%; */
+  }
+   
+  .navbar-container .container .logo {
+    order: 1;
+    flex: 1 0 70%;
+  }
+
+  .logo .menu-btn {
+    display: block;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+  .navbar-container .container .cart-icon {
+    order: 2;
+    align-self: flex-end;
+  }
+  .navbar-container .container .search-form {
+    order: 3;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-form input {
+    width: 100%;
+    border-radius: 20px;
+    padding-left: 15px;
+    height: 30px;
+    line-height: 3;
+
+  }
+  .search-form label {
+    display: block;
+    margin-left: -25px;
+  }
+
+  .search-form button {
+    display: none;
+  }
+
+  .categories {
+    display: none;
+  }
+
   .hero-banner-container {
     height: 560px;
   }

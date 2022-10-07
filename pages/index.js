@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useStateContext } from '../context/StateContext';
+
 
 import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner, CategoriesAside, CategoriesNav } from '../components';
 
-const Home = ({ products, bannerData, categories }) => (
+const Home = ({ products, bannerData, categories }) => {
+  const {setCategories} = useStateContext()
+ 
+  useEffect(()=> {
+    if(categories?.length) setCategories(categories)
+  },[categories])
+
+  return(
   <div className='container'>
     <div className='main-view'>
     <CategoriesAside categories={categories}/>
@@ -21,7 +30,7 @@ const Home = ({ products, bannerData, categories }) => (
 
     <FooterBanner footerBanner={bannerData && bannerData[0]} />
   </div>
-);
+);}
 
 export const getStaticProps = async () => {
   const query = '*[_type == "product"]';
