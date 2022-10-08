@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import Link from 'next/link';
 
 import { AiOutlineShopping } from 'react-icons/ai';
@@ -14,6 +14,7 @@ const Navbar = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   const showAsideHandler = () => setShowAside((show) => !show);
+  const showCartHandler = () => setShowCart(true)
 
   return (
     <div className="navbar-container ">
@@ -31,7 +32,7 @@ const Navbar = () => {
         <button
           type="button"
           className="cart-icon nav-item"
-          onClick={() => setShowCart(true)}
+          onClick={showCartHandler}
         >
           <AiOutlineShopping />
           <span className="cart-item-qty">{totalQuantities}</span>
@@ -43,4 +44,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

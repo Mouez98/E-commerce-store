@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import 'animate.css';
+
 import { urlFor } from '../../lib/client';
 
 const HeroBanner = ({ heroBanner }) => {
