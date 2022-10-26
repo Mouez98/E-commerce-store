@@ -7,7 +7,7 @@ import { Product, FooterBanner, HeroBanner, CategoriesAside, CategoriesNav } fro
 
 const Home = ({ products, bannerData, categories }) => {
   const {setCategories} = useStateContext()
- 
+
   useEffect(()=> {
     if(categories?.length) setCategories(categories)
   },[categories])
