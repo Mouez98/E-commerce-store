@@ -19,7 +19,7 @@ const SearchResult = ({ products, category, searchQuery }) => {
     <section>
       <div className="container search-result">
         <h3>Results of: <span>{category? category.category : searchQuery }</span></h3>
-        <div className="products-container">
+        <div className="products-container grid">
           {content}
         </div>
       </div>

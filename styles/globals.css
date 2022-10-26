@@ -1155,7 +1155,7 @@ span.text-red {
   }
   .track {
     animation: marquee 10s linear infinite;
-    width: 550%;
+    width: 225%;
   }
   .success-wrapper,
   .cancel-wrapper {
