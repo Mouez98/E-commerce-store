@@ -27,7 +27,7 @@ useEffect(()=>{
       </div>
     );
 
-  const { smallText, midText, largeText1, image, product, buttonText, desc } =
+  const { smallText, midText, largeText1, image, product, buttonText, desc, slug } =
     heroBanner[index];
   return (
     <div className="hero-banner-container">
@@ -41,7 +41,7 @@ useEffect(()=>{
           className="hero-banner-image"
         />
         <div>
-          <Link href={`/product/${product}`}>
+          <Link href={`/product/${slug.current}`}>
             <button type="button">{buttonText}</button>
           </Link>
           <div className="desc">
