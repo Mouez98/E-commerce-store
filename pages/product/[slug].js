@@ -7,33 +7,34 @@ import { useStateContext } from '../../context/StateContext';
 import useGetDiscount from '../../hooks/useGetDiscount';
 
 const ProductDetails = ({ product, products }) => {
+  // To change images
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
-  
+
+  // Handle if no product
   if(!product) {
     return <div className="product-detail-container">
       <h5>No product found with that name!</h5>
     </div>
   }
   
+  // Destruct product properties
   const { image, name, details, price, discount: disc } = product;
+
   const { priceAfterDiscount, discount } = useGetDiscount(disc, price);
   let newPrice;
-  if (!discount) {
-    newPrice = <>{priceAfterDiscount}</>;
-  } else if (discount) {
-    newPrice = (
-      <>
-        <span className="discount-percentage"> -{disc}%</span>
-        <span className="new-price">{priceAfterDiscount} DT</span> <br />
-        Price: <span className="line-through">{price} DT</span>
-      </>
-    );
-  }
+  // If there is discount we show disc and new price
+  !discount? newPrice = <>{priceAfterDiscount}</> : newPrice = (
+        <>
+      <span className="discount-percentage"> -{disc}%</span>
+      <span className="new-price">{priceAfterDiscount} DT</span> <br />
+      Price: <span className="line-through">{price} DT</span>
+    </>
+  )
+
 
   const handleBuyNow = () => {
     onAdd(product, qty);
-
     setShowCart(true);
   };
 
@@ -43,12 +44,12 @@ const ProductDetails = ({ product, products }) => {
         <div>
           <div className="image-container">
             <img
-              src={urlFor(image && image[index])}
+              src={urlFor(Array.isArray(image) ? (image && image[index]): image)}
               className="product-detail-image"
             />
           </div>
           <div className="small-images-container">
-            {image?.map((item, i) => (
+            {Array.isArray(image) ? image?.map((item, i) => (
               <img
                 key={i}
                 src={urlFor(item)}
@@ -57,7 +58,7 @@ const ProductDetails = ({ product, products }) => {
                 }
                 onMouseEnter={() => setIndex(i)}
               />
-            ))}
+            )): null}
           </div>
         </div>
 
@@ -142,7 +143,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type in ["product", "banners"] && slug.current == '${slug}'][0]`;
+  console.log(slug);
+  const query = `*[_type in ["product", "banner"] && slug.current match '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]'
 
   const product = await client.fetch(query);
