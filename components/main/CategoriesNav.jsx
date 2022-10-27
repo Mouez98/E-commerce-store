@@ -19,7 +19,7 @@ const CategoriesNav = ({ categories }) => {
                   width={120}
                 />
               </div>
-              <h5>{category.category}</h5>
+              <h5 title={category.category}>{category.category}</h5>
             </li>
           </Link>
         ))}
