@@ -22,6 +22,11 @@ export default {
           type: 'string',
       },
       {
+          name: 'price',
+          title: 'Price',
+          type: 'number',
+      },
+      {
           name: 'desc',
           title: 'Desc',
           type: 'string',
