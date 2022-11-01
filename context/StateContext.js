@@ -19,7 +19,8 @@ export const StateContext = ({ children }) => {
     
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
-    
+
+    // To handle added products to cart
     if(checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
         if(cartProduct._id === product._id) return {
@@ -31,7 +32,7 @@ export const StateContext = ({ children }) => {
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
-      
+
       setCartItems([...cartItems, { ...product }]);
     }
 
@@ -72,7 +73,7 @@ export const StateContext = ({ children }) => {
   const decQty = () => {
     setQty((prevQty) => {
       if(prevQty - 1 < 1) return 1;
-     
+    
       return prevQty - 1;
     });
   }

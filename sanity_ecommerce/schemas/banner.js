@@ -17,15 +17,22 @@ export default {
           type: 'string',
       },
       {
-          name: 'product',
-          title: 'Product',
-          type: 'string',
+        name: 'product',
+        title: 'Product',
+        type: 'reference',
+        to: [{type: 'product'}]
       },
       {
           name: 'price',
           title: 'Price',
           type: 'number',
       },
+      {
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+      },
+    
       {
           name: 'desc',
           title: 'Desc',
