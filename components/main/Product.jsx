@@ -31,7 +31,7 @@ const Product = ({ product: { image, name, slug, price, discount: disc } }) => {
             // height={150}
             className="product-image"
           />
-          <p className="product-name">{name}</p>
+          <p className="product-name" title={name}>{name}</p>
           <p className="product-price">{priceAfterDisc}</p>
         </div>
       </Link>
