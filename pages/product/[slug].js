@@ -20,11 +20,12 @@ const ProductDetails = ({ product, products }) => {
   
   // Destruct product properties
   const { image, name, details, price, discount: disc } = product;
+  console.log(product);
 
   const { priceAfterDiscount, discount } = useGetDiscount(disc, price);
   let newPrice;
   // If there is discount we show disc and new price
-  !discount? newPrice = <>{priceAfterDiscount}</> : newPrice = (
+  !discount? newPrice = <>Price: {price} DT</> : newPrice = (
         <>
       <span className="discount-percentage"> -{disc}%</span>
       <span className="new-price">{priceAfterDiscount} DT</span> <br />
@@ -49,7 +50,7 @@ const ProductDetails = ({ product, products }) => {
             />
           </div>
           <div className="small-images-container">
-            {Array.isArray(image) ? image?.map((item, i) => (
+            {Array.isArray(image) ? image.map((item, i) => (
               <img
                 key={i}
                 src={urlFor(item)}
@@ -77,7 +78,7 @@ const ProductDetails = ({ product, products }) => {
             </p>
           </div> */}
           <h4>Details: </h4>
-          <p>{details}</p>
+          <p>{product._type === 'banner'? product.desc: details}</p>
           <p className="price">{newPrice}</p>
           <div className="quantity">
             <h3>Quantity:</h3>
@@ -143,7 +144,6 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  console.log(slug);
   const query = `*[_type in ["product", "banner"] && slug.current match '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]'
 

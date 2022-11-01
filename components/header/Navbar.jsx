@@ -7,11 +7,11 @@ import { Cart } from '..';
 import { useStateContext } from '../../context/StateContext';
 import AsideNav from './AsideNav';
 import SearchBox from './SearchBox';
-import logo from '../../assets/IMG_20221006_144938_405-removebg-preview (1).png';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const [showAside, setShowAside] = useState(false);
-  const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const { showCart, setShowCart, totalQuantities, cartItems } = useStateContext();
 
   const showAsideHandler = () => setShowAside((show) => !show);
   const showCartHandler = () => setShowCart(true)
@@ -35,7 +35,7 @@ const Navbar = () => {
           onClick={showCartHandler}
         >
           <AiOutlineShopping />
-          <span className="cart-item-qty">{totalQuantities}</span>
+          <span className="cart-item-qty">{cartItems?.length ? cartItems.length : 0}</span>
         </button>
 
         {showCart && <Cart />}
